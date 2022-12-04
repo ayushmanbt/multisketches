@@ -45,13 +45,6 @@ You will also need the NBIS Software from [here](https://www.nist.gov/itl/iad/im
 
 There is a fix we need to initiate for GCC 10 and above which is explained in this [pull request](https://github.com/lessandro/nbis/pull/1/commits)
 
+You need the imagemagic command line library installed as well.
 
-The fingerprints required for this project are pulled from [this dataset](https://doi.org/10.48550/arXiv.1807.10609)
-
-The mindtc command which converts jpg to xyt but we have BMP... so we need to convert it using mogrify
-
-```
-mogrify -format jpg *.BMP -depth 8 -strip -extent 512x480
-```
-
-To use mogrify install imagemagic.
+Next Step, Get the data using `get_data.py` file

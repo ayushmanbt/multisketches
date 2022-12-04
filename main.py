@@ -99,12 +99,14 @@ def compare(w1,w2):
 
     res = subprocess.run(["bozorth3","temp1.xyt","temp2.xyt"], stdout=subprocess.PIPE)
     
-    return_value = str(res.stdout, "utf-8")
+    return_value = str(res.stdout, "utf-8").split("\n")[0]
+
+    print(int(return_value))
     
     subprocess.run(["rm", "temp1.xyt"])
     subprocess.run(["rm", "temp2.xyt"])
 
-    if(return_value == "0\n"):
+    if(int(return_value) < 10):
         return False
     else:
         return True
@@ -117,11 +119,14 @@ def findMatches(w_i):
                 return w_i
 
 def MS(uid, w):
-    v = ssencrypt(w)
+    v = ssencrypt(w)   
     user_kv[uid] = v
     fingerprint_data[uid] = w
 
 def MRec(uid, w):
+    if(uid not in user_kv.keys()):
+        print("User is not registered yet! Please register user using 1")
+        return
     v = user_kv[uid]
     x = []
     for w_p in w:
@@ -134,7 +139,7 @@ def MRec(uid, w):
 if __name__ == "__main__":
     print("Starting program")
     #source_folder = input("Enter path to image source folder: ")
-    source_folder = "fingerprint_dataset"
+    source_folder = "fingerprint_data"
     while(True):
         print("1. Add user")
         print("2. Verify Fingerprint")
@@ -143,19 +148,19 @@ if __name__ == "__main__":
         option = input("Enter Choice: ")
 
         if(option == "1"):
-            uid = input("Enter user number[1-600]: ")
+            uid = input("Enter user number[1-7]: ")
             w = []
 
-            for i in range(10):
-                w.append(convert("{}_{}.jpg".format(uid, i), source_folder))
-
+            for i in range(1,11):
+                w.append(convert("{}_{}_{}.jpg".format(uid, i, random.randint(1,8)), source_folder))
             MS(uid, w)
+            print("User registered successfully")
         elif(option == "2"):
-            uid = input("Enter user number[1-600]: ")
-            uid2 = input("Enter fingerprint number: ")
+            uid = input("Enter user number[1-7]: ")
+            uid2 = input("Enter scanned fingerprint number[1-7]: ")
             w = []
-            for i in range(10):
-                w.append(convert("{}_{}.jpg".format(uid2, i), source_folder))
+            for i in range(1,11):
+                w.append(convert("{}_{}_{}.jpg".format(uid2, i, random.randint(1,8)), source_folder))
             w_prime = MRec(uid,w)
             if(not w_prime):
                 print("Fingerprints did not match")

@@ -1,2 +1,3 @@
 env
-fingerprint_dataset
+fingerprint_data
+*.zip
