@@ -2,12 +2,13 @@
 
 `find_min_max_of_match_score.py` is a file programmed to find all the possible matches. It was used to find out in a dataset of fingerprints how much match can be found using bozorth3.
 
-The min match score was found to be 4 (Maybe a false negetive)
-The max unmatch score was found to be 42 (Maybe a false positive)
+The min match score was found to be 4
+The max unmatch score was found to be 42
 
 The dataset obtained from [https://www.neurotechnology.com/download/UareU_sample_DB.zip](https://www.neurotechnology.com/download/UareU_sample_DB.zip) has 6 users (Cause data of user 6 is incomplete and not used) each user has 10 fingers and each finger has 8 readings.
 
-Now if we see a chart of all the match results from Bozorth 3. The data is not huge enough, but we can get an idea how accurate Bozorth3 is -
+Avg Match Score was - 108.20987654320987
+Avg Unmatch Score Was - 7.329382906202313
 
 
 
